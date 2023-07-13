@@ -20,9 +20,6 @@
             android:name=".SecondScreen"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".FirstScreen"
             android:exported="true">
             <intent-filter>
