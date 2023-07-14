@@ -1,5 +1,6 @@
 package com.dicoding.kmsuitmediatest
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dicoding.kmsuitmediatest.retrofit.DataItem
 import com.google.android.material.imageview.ShapeableImageView
 
-class UserAdapter(private val listUser: List<DataItem>) : RecyclerView.Adapter<UserAdapter.ViewHolderUser>() {
+class UserAdapter(private val listUser: MutableList<DataItem>) : RecyclerView.Adapter<UserAdapter.ViewHolderUser>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderUser {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
@@ -24,8 +25,25 @@ class UserAdapter(private val listUser: List<DataItem>) : RecyclerView.Adapter<U
 
     override fun onBindViewHolder(holder: ViewHolderUser, position: Int) {
         val user = listUser[position]
-
         holder.bind(user)
+
+        if (position == listUser.size + 1) {
+            holder.itemView.visibility = View.VISIBLE
+        } else {
+            holder.itemView.visibility = View.VISIBLE
+        }
+    }
+
+    fun addData(data: List<DataItem>) {
+        val startPosition = listUser.size
+        listUser.addAll(data)
+        notifyItemRangeInserted(startPosition, data.size)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearData() {
+        listUser.clear()
+        notifyDataSetChanged()
     }
 
     inner class ViewHolderUser(view: View) : RecyclerView.ViewHolder(view) {

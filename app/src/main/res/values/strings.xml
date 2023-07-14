@@ -11,4 +11,5 @@
     <string name="choose_a_user">Choose a User</string>
     <string name="email">email@gmail.com</string>
     <string name="third_screen">Third Screen</string>
+    <string name="back">back</string>
 </resources>
